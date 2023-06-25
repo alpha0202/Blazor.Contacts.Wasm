@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blazor.Contacts.Wasm.Client
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blazor.Contacts.Wasm.Shared", "Blazor.Contacts.Wasm\Shared\Blazor.Contacts.Wasm.Shared.csproj", "{55A336F1-A328-4088-8A71-C6BF75AC3BB9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blazor.Contacts.Wasm.Repository", "Blazor.Contacts.Wasm.Repository\Blazor.Contacts.Wasm.Repository.csproj", "{F078A316-999F-4FF5-BA2A-484A41823EEF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{55A336F1-A328-4088-8A71-C6BF75AC3BB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{55A336F1-A328-4088-8A71-C6BF75AC3BB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{55A336F1-A328-4088-8A71-C6BF75AC3BB9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F078A316-999F-4FF5-BA2A-484A41823EEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F078A316-999F-4FF5-BA2A-484A41823EEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F078A316-999F-4FF5-BA2A-484A41823EEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F078A316-999F-4FF5-BA2A-484A41823EEF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
