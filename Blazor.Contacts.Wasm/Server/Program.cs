@@ -1,6 +1,8 @@
 using Blazor.Contacts.Wasm.Repository;
 using Microsoft.AspNetCore.ResponseCompression;
-
+using System.Data;
+using System.Data.SqlClient;
+using System.Runtime.CompilerServices;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +11,12 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 
+//inyectar conexión a bd desde el appsetting
+var dbConnectionString = builder.Configuration.GetConnectionString("ConexionPredeterminada");
+builder.Services.AddSingleton<IDbConnection>((sp) => new SqlConnection(dbConnectionString));
+
+
+//inyectar el repositorio
 builder.Services.AddScoped<IContactRepository, ContactRepository>();
 
 var app = builder.Build();

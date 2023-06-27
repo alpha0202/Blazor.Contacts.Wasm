@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Blazor.Contacts.Wasm\Shared\Blazor.Contacts.Wasm.Shared.csproj" />
+  </ItemGroup>
+
 </Project>
