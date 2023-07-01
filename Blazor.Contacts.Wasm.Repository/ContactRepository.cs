@@ -110,6 +110,8 @@ namespace Blazor.Contacts.Wasm.Repository
             var sql = @"DELETE FROM ContactsDB WHERE Id = @Id";
 
             var result = await _dbConnection.ExecuteAsync(sql, new { Id = id });
+
+            return result > 0;
         }
 
     }
