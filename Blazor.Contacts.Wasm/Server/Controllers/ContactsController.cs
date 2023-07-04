@@ -47,5 +47,55 @@ namespace Blazor.Contacts.Wasm.Server.Controllers
 
         }
 
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Put(int id,[FromBody] Contact contacts)
+        {
+            if (contacts == null)
+                return BadRequest();
+
+            if (string.IsNullOrWhiteSpace(contacts.FirstName))
+            {
+                ModelState.AddModelError("FirstName", "Primer nombre no puede estar vacío.");
+            }
+            if (string.IsNullOrWhiteSpace(contacts.LastName))
+            {
+                ModelState.AddModelError("LastName", "Apellido no puede estar vacío.");
+            }
+
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            await _contactRepository.UpdateContact(contacts);
+
+            return NoContent();
+
+        }
+
+
+        [HttpGet]
+
+        public async Task<IEnumerable<Contact>> Get() 
+        {
+            return await _contactRepository.GetAll();
+        }
+
+        [HttpGet("{id}")]
+
+        public async Task<Contact> Get(int id)
+        {
+            return await _contactRepository.GetDetails(id);
+        }
+
+
+        [HttpDelete("{id}")]
+        public async Task Delete(int id)
+        {
+            await _contactRepository.DeleteContact(id);
+        }
+
+
     }
 }

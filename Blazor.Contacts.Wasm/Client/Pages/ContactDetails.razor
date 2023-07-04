@@ -1,0 +1,87 @@
+﻿@page "/contactdetails"
+
+@using Services
+@using Blazor.Contacts.Wasm.Shared
+
+@inject IContactService ContactService
+
+@if (contact == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+
+    <EditForm Model="contact" OnInvalidSubmit="Save">
+
+        <div class="card">
+            <h5 class="card-header">Contact Details</h5>
+            <div class="card-body">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="">First Name</label>
+                            <InputText class="form-control" @bind-Value="contact.FirstName"></InputText>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="">Last Name</label>
+                            <InputText class="form-control" @bind-Value="contact.LastName"></InputText>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 mb-3">
+                            <label for="">Phone</label>
+                            <InputText class="form-control" @bind-Value="contact.Phone"></InputText>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 mb-3">
+                            <label for="">Adress</label>
+                            <InputTextArea class="form-control" @bind-Value="contact.Adrress"></InputTextArea>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <input type="submit" class="btn btn-success" value="Save" />
+                            <input type="button" class="btn btn-secondary" value="Cancel" />
+
+                        </div>
+                        <div class="col-md-4 mb-3">
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+    </EditForm>
+
+}
+
+
+
+@code {
+    public Contact contact;
+
+    //método que se carga al iniciar todo el componente.
+    protected async override Task OnInitializedAsync() 
+    {
+        contact = new Contact();
+    }
+
+    protected async Task Save()
+    {
+
+        await ContactService.SaveContact(contact);
+    }
+
+
+}
