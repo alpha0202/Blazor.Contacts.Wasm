@@ -21,8 +21,7 @@ namespace Blazor.Contacts.Wasm.Repository
         public async Task<IEnumerable<Contact>> GetAll()
         {
             var sql = @"SELECT Id, FirstName, LastName, Phone, Address 
-                        FROM ContactsDB
-                        ";
+                        FROM Contacts";
 
             return await _dbConnection.QueryAsync<Contact>(sql, new {  });
         }

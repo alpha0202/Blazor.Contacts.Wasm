@@ -1,17 +1,15 @@
-﻿@page "/contactdetails"
-@page "/contactdetails/{id:int}"
+﻿@page "/contactdelete/{id:int}"
 
 @inject IContactService ContactService
 @inject NavigationManager NavigationManager
 
-@if (contact == null)
-{
-    <p><em>Loading...</em></p>
-}
-else
-{
+<h3>Contact Delete</h3>
+<p style="color:darkred;text-align:center">Are you sure you want to delete this contact?</p>
 
-    <EditForm Model="contact">
+
+
+
+    <EditForm Model="@contact">
 
         <div class="card">
             <h5 class="card-header">Contact Details</h5>
@@ -45,8 +43,8 @@ else
                         <div class="col-md-4 mb-3">
                         </div>
                         <div class="col-md-4 mb-3">
-                            <input type="submit" class="btn btn-success" value="Save" @onclick="Save" />
-                            <input type="button" class="btn btn-secondary" value="Cancel" @onclick="Cancel" />
+                            <input type="submit" class="btn btn-outline-warning" value="Delete"  @onclick="Delete" />
+                            <input type="button" class="btn btn-outline-secondary" value="Cancel"  @onclick="Cancel" />
 
                         </div>
                         <div class="col-md-4 mb-3">
@@ -63,30 +61,28 @@ else
 
     </EditForm>
 
-}
+
 
 
 
 @code {
-    //public Contact contact;
-    public Contact contact = new Contact();
 
     [Parameter]
     public int id { get; set; }
+    //public Contact contact;
+    public Contact contact = new Contact();
 
     //método que se carga al iniciar todo el componente.
-    protected async override Task OnInitializedAsync() 
+    protected async override Task OnInitializedAsync()
     {
-        if (id == 0)
-            contact = new Contact();
-        else
-            contact = await ContactService.GetDetails(id);
+
+        contact = await ContactService.GetDetails(id);
     }
 
-    protected async Task Save()
+    protected async Task Delete()
     {
 
-        await ContactService.SaveContact(contact);
+        await ContactService.DeleteContact(id);
         NavigationManager.NavigateTo("/");
     }
 
