@@ -32,7 +32,7 @@ namespace Blazor.Contacts.Wasm.Repository
         public async Task<Contact> GetDetails(int id)
         {
             var sql = @"SELECT Id, FirstName, LastName, Phone, Address 
-                        FROM ContactsDB
+                        FROM Contacts
                         WHERE Id = @Id"; 
 
             return await _dbConnection.QueryFirstOrDefaultAsync<Contact>(sql, new {Id = id});
@@ -44,7 +44,7 @@ namespace Blazor.Contacts.Wasm.Repository
         {
             try
             {
-                var sql = @"INSERT INTO ContactsDB(FirstName, LastName, Phone, Address)
+                var sql = @"INSERT INTO Contacts(FirstName, LastName, Phone, Address)
                                     VALUES(@FirstName, @LastName, @Phone, @Address)";
 
 
@@ -54,7 +54,7 @@ namespace Blazor.Contacts.Wasm.Repository
                          contact.FirstName, 
                          contact.LastName,
                          contact.Phone,
-                         contact.Adrress
+                         contact.Address
                     }                
                     );
 
@@ -75,7 +75,7 @@ namespace Blazor.Contacts.Wasm.Repository
         {
             try
             {
-                var sql = @"UPDATE ContactsDB
+                var sql = @"UPDATE Contacts
                                     SET FirstName = @FirstName  , 
                                     LastName = @LastName , 
                                     Phone = @Phone , 
@@ -90,7 +90,7 @@ namespace Blazor.Contacts.Wasm.Repository
                         contact.FirstName,
                         contact.LastName,
                         contact.Phone,
-                        contact.Adrress
+                        contact.Address
                     }
                     );
 
@@ -107,7 +107,7 @@ namespace Blazor.Contacts.Wasm.Repository
 
         public  async Task<bool> DeleteContact(int id)
         {
-            var sql = @"DELETE FROM ContactsDB WHERE Id = @Id";
+            var sql = @"DELETE FROM Contacts WHERE Id = @Id";
 
             var result = await _dbConnection.ExecuteAsync(sql, new { Id = id });
 

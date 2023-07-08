@@ -4,6 +4,7 @@
 @using Blazor.Contacts.Wasm.Shared
 
 @inject IContactService ContactService
+@inject NavigationManager NavigationManager
 
 @if (contact == null)
 {
@@ -12,7 +13,7 @@
 else
 {
 
-    <EditForm Model="contact" OnInvalidSubmit="Save">
+    <EditForm Model="contact">
 
         <div class="card">
             <h5 class="card-header">Contact Details</h5>
@@ -21,24 +22,24 @@ else
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label for="">First Name</label>
-                            <InputText class="form-control" @bind-Value="contact.FirstName"></InputText>
+                            <input class="form-control" @bind="contact.FirstName"></input>
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="">Last Name</label>
-                            <InputText class="form-control" @bind-Value="contact.LastName"></InputText>
+                            <input class="form-control" @bind="contact.LastName"/>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12 mb-3">
                             <label for="">Phone</label>
-                            <InputText class="form-control" @bind-Value="contact.Phone"></InputText>
+                            <input class="form-control" @bind="contact.Phone"></input>
                         </div>
 
                     </div>
                     <div class="row">
                         <div class="col-md-12 mb-3">
                             <label for="">Adress</label>
-                            <InputTextArea class="form-control" @bind-Value="contact.Adrress"></InputTextArea>
+                            <input class="form-control" @bind="contact.Address"></input>
                         </div>
 
                     </div>
@@ -46,7 +47,7 @@ else
                         <div class="col-md-4 mb-3">
                         </div>
                         <div class="col-md-4 mb-3">
-                            <input type="submit" class="btn btn-success" value="Save" />
+                            <input type="submit" class="btn btn-success" value="Save" @onclick="Save" />
                             <input type="button" class="btn btn-secondary" value="Cancel" />
 
                         </div>
@@ -69,7 +70,8 @@ else
 
 
 @code {
-    public Contact contact;
+    //public Contact contact;
+   public Contact contact = new Contact();
 
     //método que se carga al iniciar todo el componente.
     protected async override Task OnInitializedAsync() 
@@ -81,6 +83,7 @@ else
     {
 
         await ContactService.SaveContact(contact);
+        NavigationManager.NavigateTo("/");
     }
 
 

@@ -15,7 +15,7 @@ namespace Blazor.Contacts.Wasm.Shared
 
         public string Phone { get; set; }
 
-        public string Adrress { get; set; }
+        public string Address { get; set; }
 
         public string FullName {
 
