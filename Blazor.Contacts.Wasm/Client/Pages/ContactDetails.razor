@@ -10,8 +10,62 @@
 }
 else
 {
+    <RadzenTemplateForm Data="@contact">
+        <div class="card">
+            <h5 class="card-header">Contact Details</h5>
+            <div class="card-body">
+                <div class="container">
 
-    <EditForm Model="contact">
+                    <RadzenFieldset Text="Contact Details">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="">First Name</label>
+                                <RadzenTextBox class="form-control" @bind="contact.FirstName"/>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="">Last Name</label>
+                                <RadzenTextBox class="form-control" @bind="contact.LastName" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 mb-3">
+                                <label for="">Phone</label>
+                                <RadzenTextBox class="form-control" @bind="contact.Phone"/>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 mb-3">
+                                <label for="">Adress</label>
+                                <RadzenTextArea class="form-control" @bind="contact.Address"/>
+                            
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <RadzenButton Text="Save" ButtonStyle="ButtonStyle.Primary" Click="@(arg => Save())" />
+                                <RadzenButton Text="Cancel" ButtonStyle="ButtonStyle.Secondary" Click="@(arg => Cancel())" />
+
+                            </div>
+                            <div class="col-md-4 mb-3">
+                            </div>
+                        </div>
+
+                    </RadzenFieldset>
+
+
+                </div>
+            </div>
+        </div>
+
+
+    </RadzenTemplateForm>
+
+
+   @* <EditForm Model="contact">
 
         <div class="card">
             <h5 class="card-header">Contact Details</h5>
@@ -62,7 +116,7 @@ else
 
 
     </EditForm>
-
+*@
 }
 
 
